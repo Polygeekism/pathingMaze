@@ -13,19 +13,28 @@ function buildMaze(inputArray){
     var arr = inputArray.split(/\s+/);
     var twoDArray = [];
     var nRows = arr.length;
-    var nColumns = arr[0].length;
+    var mazeStart = "";
+    var mazeEnd = "";
 
-    // for(var r=0; r<=nRows; r++){
-    //     twoDArray.push([]);
-    // }
-
+    
     for(var i =0; i<nRows; i++){
-        console.log('index',i, 'array',arr[i]);
-        arr[i] = arr[i].split("");
-       
+        //console.log('index',i, 'array',arr[i]);
+        arr[i] = arr[i].split("");       
     }
-    console.log('buildmaze function', arr)
-   //console.log('buildmaze function', arr,'rows', nRows, 'columns', nColumns,'2darray', twoDArray);
+    for(var r=0; r<arr.length; r++){
+        for(var p =0; p<arr[r].length; p++){
+            if(arr[r][p] == "A"){
+                //console.log("yes A");
+                mazeStart = [[r],[p]];
+            }
+            if(arr[r][p] == "B"){
+                //console.log("yes B");
+                mazeEnd = [[r],[p]];
+            }
+            
+        }        
+    }
+    console.log('buildmaze function', arr,'start', mazeStart, 'end', mazeEnd)
     
 }
 
