@@ -10,5 +10,14 @@ app.controller('mazeController', ['$http', function($http){
 
     self.sendMaze = function(){
         console.log("button clicked,", self.mazeInput);
+        $http({
+            method: 'POST',
+            url: '/mazeinput',
+            data: self.mazeInput
+        }).then(function (response){
+            console.log(response.data);
+            
+        })
+        
     }
 }]);
