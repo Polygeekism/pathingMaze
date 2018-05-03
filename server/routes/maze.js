@@ -11,7 +11,77 @@ router.post('/', function(req, res){
 function buildMaze(inputArray){
     var i = 0;
     var arr = inputArray.split(/\s+/);
-    console.log('buildmaze function', arr);
+    var twoDArray = [];
+    var nRows = arr.length;
+    var nColumns = arr[0].length;
+
+    // for(var r=0; r<=nRows; r++){
+    //     twoDArray.push([]);
+    // }
+
+    for(var i =0; i<nRows; i++){
+        console.log('index',i, 'array',arr[i]);
+        arr[i] = arr[i].split("");
+       
+    }
+    console.log('buildmaze function', arr)
+   //console.log('buildmaze function', arr,'rows', nRows, 'columns', nColumns,'2darray', twoDArray);
+    
 }
+
+var jp = jp || {};
+
+function findPath(xC, yC, xT, yT){
+    var current, // Current best open tile
+        neighbors, // Dump of all nearby neighbor tiles
+        neighborRecord, // Any pre-existing records of a neighbor
+        stepCost, // Dump of a total step score for a neighbor
+        i;
+
+    // You must add the starting step
+    this.reset()
+        .addOpen(new jp.Step(xC, yC, xT, yT, this.step, false));
+
+    while (this.open.length !== 0) {
+        current = this.getBestOpen();
+
+        // Check if goal has been discovered to build a path
+        if (current.x === xT && current.y === yT) {
+            return this.buildPath(current, []);
+        }
+
+        // Move current into closed set
+        this.removeOpen(current)
+            .addClosed(current);
+
+        // Get neighbors from the map and check them
+        neighbors = jp.map.getNeighbors(current.x, current.y);
+        for (i = 0; i < neighbors.length; i++) {
+            // Get current step and distance from current to neighbor
+            stepCost = current.g + jp.map.getCost(current.x, current.y, neighbors[i].x, neighbors[i].y);
+
+            // Check for the neighbor in the closed set
+            // then see if its cost is >= the stepCost, if so skip current neighbor
+            neighborRecord = this.inClosed(neighbors[i]);
+            if (neighborRecord && stepCost >= neighborRecord.g)
+                continue;
+
+            // Verify neighbor doesn't exist or new score for it is better
+            neighborRecord = this.inOpen(neighbors[i]);
+            if (!neighborRecord || stepCost < neighborRecord.g) {
+                if (!neighborRecord) {
+                    this.addOpen(new jp.Step(neighbors[i].x, neighbors[i].y, xT, yT, stepCost, current));
+                } else {
+                    neighborRecord.parent = current;
+                    neighborRecord.g = stepCost;
+                    neighborRecord.f = stepCost + neighborRecord.h;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
 
 module.exports = router;
