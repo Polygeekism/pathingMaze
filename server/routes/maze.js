@@ -12,8 +12,6 @@ function buildMaze(inputArray){
     var i = 0;
     var arr = inputArray.split(/\s+/);
     console.log('buildmaze function', arr);
-    
-
 }
 
 module.exports = router;
