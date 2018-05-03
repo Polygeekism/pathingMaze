@@ -6,11 +6,11 @@
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 10px;
-    background-color: #2196F3;
+    background-color: #403f4c;
     padding: 10px;
   }
   .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #79c7c5;
     text-align: center;
     padding: 20px 0;
     font-size: 30px;
