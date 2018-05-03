@@ -35,6 +35,8 @@ function buildMaze(inputArray){
         }        
     }
     console.log('buildmaze function', arr,'start', mazeStart, 'end', mazeEnd)
+
+    //findPath(mazeStart[0], mazeStart[1], mazeEnd[0], mazeEnd[1]);
     
 }
 
