@@ -1,11 +1,13 @@
 var express = require('express');
 var app = express();
-var bodyparser = require('body-parser');
+var bodyParser = require('body-parser');
 var maze = require('./routes/maze');
 
 var port = 5000;
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.use('/mazeinput', maze)
 
