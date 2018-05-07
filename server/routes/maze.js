@@ -4,8 +4,8 @@ var router = express.Router();
 
 router.post('/', function(req, res){
     //console.log('reached the route from front end.', req.body.maze);
-    buildMaze(req.body.maze);
-    res.sendStatus(200);
+    //buildMaze(req.body.maze);
+    res.send(buildMaze(req.body.maze));
 })
 
 function buildMaze(inputArray){
@@ -14,6 +14,7 @@ function buildMaze(inputArray){
     var nRows = maze.length;
     var mazeStart = "";
     var mazeEnd = "";
+    
 
     
     for(var i =0; i<nRows; i++){
@@ -29,20 +30,19 @@ function buildMaze(inputArray){
             }            
         }        
     }
+    
 
     console.log('input maze', maze);
+ 
+  //console.log('custom maze', findShortestPath(mazeStart, maze)); 
+  var result = findShortestPath(mazeStart, maze);
 
-    
-  //console.log('grid', grid);
-  //console.log('base algorithm', findShortestPath([0,0], grid));  
-  console.log('custom maze', findShortestPath(mazeStart, maze)); 
-
-    
+  return result;  
 }
 
 
 // Start location will be in the following format:
-// [distanceFromTop, distanceFromLeft]
+// 
 var findShortestPath = function(startCoordinates, grid) {
     var distanceFromTop = startCoordinates[0];
     var distanceFromLeft = startCoordinates[1];
@@ -66,7 +66,7 @@ var findShortestPath = function(startCoordinates, grid) {
     while (queue.length > 0) {
       // Take the first location off the queue
       var currentLocation = queue.shift();
-      //console.log('currentlocation', currentLocation);
+      console.log('currentlocation', currentLocation);
   
       // Explore North
       var newLocation = exploreInDirection(currentLocation, 'North', grid);
@@ -112,7 +112,21 @@ var findShortestPath = function(startCoordinates, grid) {
   // Returns "Valid", "Invalid", "Blocked", or "B"
   var locationStatus = function(location, grid) {
 
+    //console.log('location in locationstatus', location);
+
+    var nColumnCheck = grid[0].length -1;
+    var nRowCheck = grid.length -1;
+    //console.log('rows and columns,', nColumnCheck, nRowCheck);
+    
+    if (location.distanceFromLeft < 0 ||
+        location.distanceFromLeft > nColumnCheck ||
+        location.distanceFromTop < 0 ||
+        location.distanceFromTop > nRowCheck) {
+            return 'Invalid';
+        }
+
     var dft = location.distanceFromTop;
+
     var dfl = location.distanceFromLeft;
 
     if (grid[dft][dfl] === 'B') {
@@ -151,6 +165,7 @@ var findShortestPath = function(startCoordinates, grid) {
       path: newPath,
       status: 'Unknown'
     };
+    
     newLocation.status = locationStatus(newLocation, grid);
   
     // If this new location is valid, mark it as 'Visited'
