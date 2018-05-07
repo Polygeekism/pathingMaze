@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 router.post('/', function(req, res){
-    console.log('reached the route from front end.', req.body.maze);
+    //console.log('reached the route from front end.', req.body.maze);
     buildMaze(req.body.maze);
     res.sendStatus(200);
 })
@@ -30,34 +30,11 @@ function buildMaze(inputArray){
         }        
     }
 
-    //console.log('input maze', maze);
+    console.log('input maze', maze);
 
-    // OK. We have the functions we need--let's run them to get our shortest path!
-  
-  // Create a 4x4 grid
-  // Represent the grid as a 2-dimensional array
-  var gridSize = 4;
-  var grid = [];
-  for (var i=0; i<gridSize; i++) {
-    grid[i] = [];
-    for (var j=0; j<gridSize; j++) {
-      grid[i][j] = '.';
-    }
-  }
-  
-  // Think of the first index as "distance from the top row"
-  // Think of the second index as "distance from the left-most column"
-  
-  // This is how we would represent the grid with obstacles above
-  grid[0][0] = "A";
-  grid[2][2] = "B";
-  
-  grid[1][1] = "#";
-  grid[1][2] = "#";
-  grid[1][3] = "#";
-  grid[2][1] = "#";
+    
   //console.log('grid', grid);
-  console.log('base algorithm', findShortestPath([0,0], grid));  
+  //console.log('base algorithm', findShortestPath([0,0], grid));  
   console.log('custom maze', findShortestPath(mazeStart, maze)); 
 
     
@@ -81,6 +58,7 @@ var findShortestPath = function(startCoordinates, grid) {
       status: 'Start'
     };
   
+    //console.log('location', location);
     // Initialize the queue with the start location already inside
     var queue = [location];
   
@@ -88,6 +66,7 @@ var findShortestPath = function(startCoordinates, grid) {
     while (queue.length > 0) {
       // Take the first location off the queue
       var currentLocation = queue.shift();
+      //console.log('currentlocation', currentLocation);
   
       // Explore North
       var newLocation = exploreInDirection(currentLocation, 'North', grid);
@@ -132,18 +111,11 @@ var findShortestPath = function(startCoordinates, grid) {
   // and has not yet been visited by our algorithm)
   // Returns "Valid", "Invalid", "Blocked", or "B"
   var locationStatus = function(location, grid) {
-    var gridSize = grid.length;
+
     var dft = location.distanceFromTop;
     var dfl = location.distanceFromLeft;
-  
-    if (location.distanceFromLeft < 0 ||
-        location.distanceFromLeft >= gridSize ||
-        location.distanceFromTop < 0 ||
-        location.distanceFromTop >= gridSize) {
-  
-      // location is not on the grid--return false
-      return 'Invalid';
-    } else if (grid[dft][dfl] === 'B') {
+
+    if (grid[dft][dfl] === 'B') {
       return 'B';
     } else if (grid[dft][dfl] !== '.') {
       // location is either an obstacle or has been visited
