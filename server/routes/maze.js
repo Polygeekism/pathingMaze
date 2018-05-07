@@ -32,7 +32,7 @@ function buildMaze(inputArray){
     var path =findShortestPath(mazeStart, maze);
 
     for(var t = 1; t<path.length; t++){
-        console.log(maze[path[t][0]][path[t][1]]);
+        //console.log(maze[path[t][0]][path[t][1]]);
         maze[path[t][0]][path[t][1]] = "@";
     }
     
@@ -48,6 +48,7 @@ function buildMaze(inputArray){
     mazeStart: mazeStart,
     maze: maze};
 
+    console.log('end maze', maze);
   return result;  
 }
 
