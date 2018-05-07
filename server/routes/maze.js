@@ -29,16 +29,23 @@ function buildMaze(inputArray){
         }        
     }
     var nColumns = maze[0].length;
-    
+    var path = findShortestPath(mazeStart, maze);
 
     console.log('input maze', nColumns, nRows, maze);
- 
+    
+    //change path to @ symbol
+    for(var t = 1; t<path.length; t++){
+        //console.log(path[t][0]);
+        maze[path[t][0]][path[t][1]]= "@";
+    }
   //console.log('custom maze', findShortestPath(mazeStart, maze)); 
+    
   var result = { 
-    path: findShortestPath(mazeStart, maze),
+    path: path,
     gridSize: [nRows, nColumns],
     mazeStart: mazeStart,
     maze: maze};
+
 
   return result;  
 }
@@ -147,7 +154,9 @@ var findShortestPath = function(startCoordinates, grid) {
   // direction
   var exploreInDirection = function(currentLocation, direction, grid) {
     var newPath = currentLocation.path.slice();
-    newPath.push(direction);
+    //console.log('newpath in explore', currentLocation);
+    newPath.push([currentLocation.distanceFromTop,currentLocation.distanceFromLeft]);
+    //newPath.push(direction);
   
     var dft = currentLocation.distanceFromTop;
     var dfl = currentLocation.distanceFromLeft;
@@ -172,9 +181,9 @@ var findShortestPath = function(startCoordinates, grid) {
     newLocation.status = locationStatus(newLocation, grid);
   
     // If this new location is valid, mark it as 'Visited'
-    if (newLocation.status === 'Valid') {
-      grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = 'Visited';
-    }
+    // if (newLocation.status === 'Valid') {
+    //   grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = 'Visited';
+    // }
   
     return newLocation;
   };
