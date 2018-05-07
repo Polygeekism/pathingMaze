@@ -9,27 +9,27 @@
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
+    <script src="vendors/phaser.min.js"></script>
 
     <link type="text/css" rel="stylesheet" href="styles/style.css">
 
     <title>Pathing Maze</title>
 </head>
 
-<body class="grid-container" ng-app="myApp" ng-controller="mazeController as mc">
-        ##########
-        #A...#...#
-        #.#.##.#.#
-        #.#.##.#.#
-        #.#....#B#
-        #.#.##.#.#
-        #....#...#
-        ##########
-    <div class="item1">Pathfinding Maze Solver</div>    
-    <input type="text" class="item2" placeholder="Maze input" ng-model="mc.mazeInput">
-    <button ng-click="mc.sendMaze()"class="item3">Submit Maze</button>
-    <div class="item4">Maze three</div>   
-    <div class="item5">Maze Answer</div>
-    
+<body>
+    <div class="grid-container" ng-app="myApp" ng-controller="mazeController as mc">
+        ########## #A...#...# #.#.##.#.# #.#.##.#.# #.#....#B# #.#.##.#.# #....#...# ##########
+        <div class="item1">Pathfinding Maze Solver</div>
+        <input type="text" class="item2" placeholder="Maze input" ng-model="mc.mazeInput">
+        <button ng-click="mc.sendMaze()" class="item3">Submit Maze</button>
+        <div class="item4">Maze three</div>
+        <div class="item5">
+            <div>Maze Answer</div>
+
+
+        </div>
+    </div>
+    <canvas class="item6" id="canvas"></canvas>
 </body>
 
 </html>

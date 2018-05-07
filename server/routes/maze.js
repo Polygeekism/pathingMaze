@@ -13,8 +13,6 @@ function buildMaze(inputArray){
     var maze = inputArray.split(/\s+/);
     var nRows = maze.length;
     var mazeStart = "";
-    var mazeEnd = "";
-    
 
     
     for(var i =0; i<nRows; i++){
@@ -30,12 +28,17 @@ function buildMaze(inputArray){
             }            
         }        
     }
+    var nColumns = maze[0].length;
     
 
-    console.log('input maze', maze);
+    console.log('input maze', nColumns, nRows, maze);
  
   //console.log('custom maze', findShortestPath(mazeStart, maze)); 
-  var result = findShortestPath(mazeStart, maze);
+  var result = { 
+    path: findShortestPath(mazeStart, maze),
+    gridSize: [nRows, nColumns],
+    mazeStart: mazeStart,
+    maze: maze};
 
   return result;  
 }
@@ -47,7 +50,7 @@ var findShortestPath = function(startCoordinates, grid) {
     var distanceFromTop = startCoordinates[0];
     var distanceFromLeft = startCoordinates[1];
 
-    console.log('distance from top and left', distanceFromTop, distanceFromLeft);
+    //console.log('distance from top and left', distanceFromTop, distanceFromLeft);
   
     // Each "location" will store its coordinates
     // and the shortest path required to arrive there
@@ -66,7 +69,7 @@ var findShortestPath = function(startCoordinates, grid) {
     while (queue.length > 0) {
       // Take the first location off the queue
       var currentLocation = queue.shift();
-      console.log('currentlocation', currentLocation);
+      //console.log('currentlocation', currentLocation);
   
       // Explore North
       var newLocation = exploreInDirection(currentLocation, 'North', grid);
