@@ -29,13 +29,21 @@ function buildMaze(inputArray){
         }        
     }
     var nColumns = maze[0].length;
+    var path =findShortestPath(mazeStart, maze);
+
+    for(var t = 1; t<path.length; t++){
+        console.log(path[t]);
+        //maze[path[t][0]][path[t][1]] = "@";
+    }
     
 
-    console.log('input maze', nColumns, nRows, maze);
+    //console.log('input maze', nColumns, nRows, maze);
+
+
  
   //console.log('custom maze', findShortestPath(mazeStart, maze)); 
   var result = { 
-    path: findShortestPath(mazeStart, maze),
+    path: path,
     gridSize: [nRows, nColumns],
     mazeStart: mazeStart,
     maze: maze};
@@ -147,7 +155,7 @@ var findShortestPath = function(startCoordinates, grid) {
   // direction
   var exploreInDirection = function(currentLocation, direction, grid) {
     var newPath = currentLocation.path.slice();
-    newPath.push(direction);
+    newPath.push([currentLocation.distanceFromTop, currentLocation.distanceFromLeft]);
   
     var dft = currentLocation.distanceFromTop;
     var dfl = currentLocation.distanceFromLeft;
