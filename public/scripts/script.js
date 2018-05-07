@@ -8,7 +8,7 @@ app.controller("mazeController", [
     // self.mazeInput = [];
     
     self.sendMaze = function() {
-      console.log("button clicked,");
+      //console.log("button clicked,");
 
       $http({
         method: "POST",
@@ -70,7 +70,7 @@ app.controller("mazeController", [
         for (var x = 0; x < board[y].length ; x++) {
             //console.log('x,y',x,y)
             if(board[y][x] === '@'){
-                console.log('coord values,',y,x, board[y][x]);
+                //console.log('coord values,',y,x, board[y][x]);
                 ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
                 
             }
