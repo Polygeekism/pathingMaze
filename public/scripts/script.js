@@ -23,41 +23,11 @@ app.controller("mazeController", [
       var canvas = document.getElementById("canvas");
 
       var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       var board = maze;
-      //[
-    //     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
-    //     [
-    //       "#",
-    //       "A",
-    //       "@",
-    //       "@",
-    //       "Visited",
-    //       "#",
-    //       "Visited",
-    //       "Visited",
-    //       "Visited",
-    //       "#"
-    //     ],
-    //     ["#", "Visited", "#", "@", "#", "#", "Visited", "#", "Visited", "#"],
-    //     ["#", "Visited", "#", "@", "#", "#", "Visited", "#", ".", "#"],
-    //     ["#", "Visited", "#", "@", "@", "@", "@", "#", "B", "#"],
-    //     ["#", "Visited", "#", "Visited", "#", "#", "@", "#", "@", "#"],
-    //     [
-    //       "#",
-    //       "Visited",
-    //       "Visited",
-    //       "Visited",
-    //       "Visited",
-    //       "#",
-    //       "@",
-    //       "@",
-    //       "@",
-    //       "#"
-    //     ],
-    //     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#"]
-    //   ];
+      
 
-      var width = 500;
+      var width = 300;
       var blockSize = width / board.length;
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -86,9 +56,9 @@ app.controller("mazeController", [
       }
       for (var y = 0; y < board.length; y++) {
         for (var x = 0; x < board[y].length; x++) {
-            console.log('x,y',x,y)
+            //console.log('x,y',x,y)
             if(board[y][x] === '@'){
-                console.log('coord values,',y,x, board[y][x]);
+                //console.log('coord values,',y,x, board[y][x]);
                 ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
                 ctx.fillStyle = "orange";
             }
