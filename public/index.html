@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
 
-
-    <link type="text/css" rel="stylesheet" href="styles/style.css">
+    <link type="text/css" rel="stylesheet" href="styles/style.css" />
 
     <title>Pathing Maze</title>
-</head>
+  </head>
 
-<body>
-    <div class="grid-container" ng-app="myApp" ng-controller="mazeController as mc">
-        <div class="item1">Pathfinding Maze Solver</div>
-        <input type="text" class="item2" placeholder="Maze input" ng-model="mc.mazeInput">
-        <button ng-click="mc.sendMaze()" class="item3">Build Maze</button>
-        <button ng-click="mc.solveMaze()" class="item4">Solve Maze</button>
-        <div class="item5">
-            <div>Maze Answer</div>
-
-
-        </div>
+  <body>
+    <div
+      class="grid-container"
+      ng-app="myApp"
+      ng-controller="mazeController as mc"
+    >
+      <div class="titleHeader">Pathfinding Maze Solver</div>
+      <input type="text" placeholder="Maze input" ng-model="mc.mazeInput" />
+      <button id="submitMaze"ng-click="mc.sendMaze()">Build Maze</button>
+      <div class="mazeHeader">
+        <div>Maze Answer</div>
+      </div>
     </div>
-    <canvas class="item6" id="canvas" width="1000px" height="500px"></canvas>
-</body>
-
+    <canvas id="canvas" width="1000px" height="500px"></canvas>
+  </body>
 </html>

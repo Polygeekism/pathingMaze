@@ -1,35 +1,37 @@
 .main-title {
-    color:green;
+  color: green;
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 10px;
-    background-color: #403f4c;
-    padding: 10px;
-  }
-  .grid-container > div {
-    background-color: #79c7c5;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-  }
-  .item1 {
-    grid-column-start: 1;
-    grid-column-end: 4;
-  }
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  background-color: #403f4c;
+  padding: 10px;
+}
+.grid-container > div {
+  background-color: #0a5802;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.titleHeader {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+#submitMaze{
+  grid-column: 2 / span 2;
+}
+.mazeHeader {
+  grid-column: 1 / span 3;
+}
+#canvas {
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .item5{
-    grid-column: 1 / span 3;
-  }
-  #canvas{
-    padding: 5px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  body {
-    background: white;
-    padding: 5px;
+body {
+  background: white;
+  padding: 5px;
 }
