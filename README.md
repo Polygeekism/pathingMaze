@@ -30,23 +30,12 @@ The project will run on localhost 5000. You can then submit the following maze t
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+There is currently one basic Mocha test. It runs a simplified test maze against just the builder function bypassing the front end. I makes sure that a result is returned with the correct number of steps in the solution path and checks each other component to make sure they are not empty.
 
 ```
-Give an example
+npm test
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Built With
 

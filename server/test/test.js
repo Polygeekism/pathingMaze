@@ -9,5 +9,7 @@ describe('basic test of the buildMaze function', () => {
     console.log('result', result);
     assert.equal(result.path.length, 5);
     assert.equal(result.gridSize[0], 5);
+    assert.notEqual(result.mazeStart, null);
+    assert.notEqual(result.maze, null);
   });
 });
