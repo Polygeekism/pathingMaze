@@ -7,6 +7,8 @@ app.controller('mazeController', [
     self.stepCounter = 0;
 
     self.sendMaze = function() {
+
+    console.log(self.mazeInput);
       $http({
         method: 'POST',
         url: '/mazeinput/',
