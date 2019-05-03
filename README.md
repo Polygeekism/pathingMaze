@@ -47,7 +47,7 @@ npm test
 
 ## Authors
 
-* **Kevin McMahon** - *Initial work* - [Polygeekism](https://github.com/Polygeekism)
+* **Kevin McMahon** - [Polygeekism](https://github.com/Polygeekism)
 
 ## License
 
