@@ -1,4 +1,4 @@
-var findShortestPath = require('./shortest-part-finder');
+var findShortestPath = require('./shortest-path-finder');
 
 function buildMaze(inputArray) {
   var i = 0;
@@ -30,8 +30,6 @@ function buildMaze(inputArray) {
     mazeStart: mazeStart,
     maze: maze
   };
-
-  console.log('end maze', result.path.length);
   return result;
 }
 

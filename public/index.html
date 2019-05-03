@@ -22,9 +22,10 @@
     >
       <div class="titleHeader">Pathfinding Maze Solver</div>
       <input type="text" placeholder="Maze input" ng-model="mc.mazeInput" />
-      <button id="submitMaze"ng-click="mc.sendMaze()">Build Maze</button>
+      <button id="submitMaze" ng-click="mc.sendMaze()">Solve Maze</button>
       <div class="mazeHeader">
-        <div>Maze Answer</div>
+        <div>Maze Solution</div>
+        <div ng-if="mc.stepCounter != 0">Number of Steps {{mc.stepCounter}}</div>
       </div>
     </div>
     <canvas id="canvas" width="1000px" height="500px"></canvas>

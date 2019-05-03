@@ -4,7 +4,7 @@ app.controller('mazeController', [
   '$http',
   function($http) {
     var self = this;
-    var stepCounter;
+    self.stepCounter = 0;
 
     self.sendMaze = function() {
       $http({
@@ -12,7 +12,7 @@ app.controller('mazeController', [
         url: '/mazeinput/',
         data: { maze: self.mazeInput }
       }).then(function(response) {
-        stepCounter = response.data.path.length;
+        self.stepCounter = response.data.path.length;
         draw(response.data.maze);
       });
     };
